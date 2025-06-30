@@ -1,0 +1,9 @@
+
+
+
+#!/bin/sh
+npx --no -- commitlint --edit "$1"|| exit 1  # 注意 `--no` 和双引号包裹 `$1`
+if ! echo "$(cat "$1")" | npx commitlint --verbose 2>/dev/null; then
+  echo "请使用 pnpm commit 生成符合规范的提交信息"
+  exit 1
+fi
